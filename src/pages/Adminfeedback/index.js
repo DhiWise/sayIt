@@ -814,7 +814,7 @@ sm:px-[0] sm:w-[100%] w-[65%]">
                               <Stack className="h-[28px] w-[6%]">
                                 <Column className="h-[33px] bg-purple_200  inset-y-[0] items-center 
               justify-start left-[0] my-[auto] sm:px-[2px]
-               md: rounded-radius50 sm:w-[12px] md:w-[16px] w-[32px] p-[5px]">
+               md: rounded-radius50 sm:w-[12px] md:w-[16px] w-[32px] p-[5px] ml-1">
                                   <Text
                                     className="mb-[1px] text-white_A700 w-[auto]"
                                     variant="body1"
@@ -826,7 +826,7 @@ sm:px-[0] sm:w-[100%] w-[65%]">
                               <div>
                                 <Column className="sm:mx-[0] sm:px-[0]">
 
-                                  <Row className="md:flex-wrap sm:flex-wrap items-start w-[100%]">
+                                  <Row className="md:flex-wrap sm:flex-wrap items-start w-[100%] ml-3">
                                     <Text className="row" variant="body3">
                                       {apiData1ResponseEle?.profiles?.name}
                                     </Text>
@@ -841,7 +841,7 @@ sm:px-[0] sm:w-[100%] w-[65%]">
                                   </Row>
                                   {!visibleCommentForm &&
                                     <>
-                                      <Text className="column" variant="body3">
+                                      <Text className="column ml-3" variant="body3">
                                         {apiData1ResponseEle?.comments}
                                       </Text>
                                       <Row className="md:flex-wrap sm:flex-wrap items-start sm:mt-[3px] 
@@ -1006,10 +1006,10 @@ sm:px-[0] sm:w-[100%] w-[65%]">
                             Public link
                           </Text>
                           <Text
-                            className="common-pointer"
+                            className="common-pointer ml-[32px]"
                             variant="body3"
                           >
-                            https://comingsoon.canny.io
+                            https://comingsoon.sayit.io
                           </Text>
                         </Row>
                         <Row className="md:flex-wrap sm:flex-wrap items-center mt-[10px] sm:mt-[3px] md:mt-[5px] sm:mx-[0] sm:px-[0]">
@@ -1043,7 +1043,7 @@ sm:px-[0] sm:w-[100%] w-[65%]">
                             You
                           </Text>
                           <Row className="md:flex-wrap sm:flex-wrap items-start justify-evenly md:ml-[10px]
-               ml-[31px] sm:mx-[0] sm:px-[0]">
+               ml-[32px] sm:mx-[0] sm:px-[0]">
                             <Text
                               className="font-normal not-italic text-bluegray_900 w-[200px]"
                               variant="body3"
