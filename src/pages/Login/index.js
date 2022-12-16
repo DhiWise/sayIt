@@ -1,9 +1,84 @@
 import React from "react";
 
-import { Column, Row, Button, Text, Input, Footer } from "components";
+import { Column, Row, Img, Button, Text, Input, Footer } from "components";
+import { loginData,fetchUserData } from "service/api";
+import useForm from "hooks/useForm";
+import * as yup from "yup";
+import _ from "lodash";
+import { useNavigate } from "react-router-dom";
+import { increment, selectCount } from 'reducers/userSlice';
+import { useDispatch,useSelector } from 'react-redux';
+import { Link } from "react-router-dom";
 
 const Login = () => {
-  
+  const navigate= useNavigate();
+  const dispatch = useDispatch();
+
+  const [passwordData, setPasswordData] = React.useState();
+  const formValidationSchema = yup.object().shape({
+    password: yup
+      .string()
+      .required("Password is required")
+      .min(8, "Password must be minimum of length 8")
+      .max(20, "Password must be maximum of length 20")
+      .matches(
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-._]).{8,}$/,
+        "Password is not in correct format"
+      ),
+        email: yup
+          .string()
+          .required("Email is required")
+          .email("Please enter valid email")
+  });
+  const form = useForm(
+    {email: "", password: "" },
+    {
+      validate: true,
+      validateSchema: formValidationSchema,
+      validationOnChange: true,
+    }
+  );
+
+  function login(data) {
+    const req = { data: { ...data } };
+    let value={};
+    dispatch(increment(value));
+    localStorage.removeItem('LOGIN');
+    loginData(req)
+      .then((res) => {
+        setPasswordData(res);
+        fetchProfiles(res?.user?.id);
+        localStorage.removeItem('INVITE');
+        navigate("/adminfeedback");
+      })
+      .catch((err) => {
+        alert(err?.response?.data?.error_description);
+      });
+  }
+  function fetchProfiles(data) {
+    const req = {
+      params: {
+        auth_user_id: `eq.${data}`,
+        select: "*",
+      },
+      
+    };
+      fetchUserData(req)
+        .then((res) => {
+         // Start Manual Code
+          let value={
+            id:res[0]?.id,
+            name:res[0]?.name
+          }
+         dispatch(increment(value));
+         localStorage.setItem('LOGIN',res[0]?.type);
+        })
+        // End Manual Code
+        .catch((err) => {
+          console.error(err);
+        });
+    }  
+
   return (
     <>
       <Column className="bg-gray_100 font-inter items-center justify-start mx-[auto] sm:p-[15px] md:p-[18px] p-[36px] w-[100%]">
@@ -38,6 +113,10 @@ const Login = () => {
                 placeholder="Email"
                 shape="RoundedBorder6"
                 size="xl"
+                errors={form?.errors?.email}
+                onChange={(e) => {
+                  form.handleChange("email", e.target.value);
+                }}
 
               ></Input>
               
@@ -49,6 +128,10 @@ const Login = () => {
                 placeholder="Password"
                 shape="RoundedBorder6"
                 size="xl"
+                errors={form?.errors?.password}
+                onChange={(e) => {
+                  form.handleChange("password", e.target.value);
+                }}
 
               ></Input>
               
@@ -58,10 +141,16 @@ const Login = () => {
                 shape="RoundedBorder6"
                 size="xl"
                 variant="FillLightgreenA700"
+                onClick={() => {
+                  form.handleSubmit(login);
+                }}
 
               >
                 LOGIN
               </Button>
+              <Link to="/register">
+              Don't have an account? Sign up
+              </Link>
             </Column>
             
           </Row>

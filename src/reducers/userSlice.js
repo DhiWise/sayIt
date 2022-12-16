@@ -7,7 +7,7 @@ export const userSlice = createSlice({
   },
   reducers: {
     increment: (state,value) => {
-      state.value = 1
+      state.value = value
     },
   },
 })

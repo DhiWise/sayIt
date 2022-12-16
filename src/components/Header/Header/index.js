@@ -1,12 +1,37 @@
 import React from "react";
 
-import { Row, Img, Button, Text, Column } from "components";
+import { Row, Img, Stack, Button, Text, Column } from "components";
+import { increment, selectCount } from 'reducers/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchInitals } from "util";
 import ReactTooltip from 'react-tooltip';
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import Adminnotificationspopup from "modals/Adminnotificationspopup";
+
+const Header = (props) => {
+  const count = useSelector(selectCount);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [isOpenAdminnotificationspopup, setAdminnotificationspopup] =
+    React.useState(false);
+  function handleOpenAdminnotificationspopupModal() {
+    setAdminnotificationspopup(true);
+  }
+  function handleCloseAdminnotificationspopupModal() {
+    setAdminnotificationspopup(false);
+  }
 
 
-const Header = () => {
+  function logout() {
+    let value = {};
+    dispatch(increment(value));
+    localStorage.removeItem('LOGIN');
+    navigate('/usercreatepost');
 
+  }
   return (
     <>
       <header className="w-[100%]">
@@ -47,12 +72,14 @@ const Header = () => {
                 size="mdIcn"
                 variant="icbFillWhiteA70033"
               >
+                <Link to="/userroadmapone">
 
                   <Img
                     src="images/img_eye.svg"
                     className="h-[24px] sm:h-[10px] md:h-[13px] flex items-center justify-center"
                     alt="eye"
                   />
+                </Link>
               </Button>
 
               <Button
@@ -74,11 +101,19 @@ const Header = () => {
                 className="flex items-center justify-center md:ml-[12px] ml-[10px] sm:ml-[9px] rounded-radius50 SayItLogo"
                 size="mdIcn"
                 variant="icbFillWhiteA70033"
+
+                onClick={handleOpenAdminnotificationspopupModal}
+                isOpen={isOpenAdminnotificationspopup}
+                onRequestClose={handleCloseAdminnotificationspopupModal}
               >
                 <Img
                   src="images/img_bell.svg"
                   className="h-[24px] sm:h-[10px] md:h-[13px] flex items-center justify-center"
                   alt="Bell"
+
+                  onClick={handleOpenAdminnotificationspopupModal}
+                  isOpen={isOpenAdminnotificationspopup}
+                  onRequestClose={handleCloseAdminnotificationspopupModal}
                 />
               </Button>
 
@@ -87,10 +122,13 @@ const Header = () => {
                   className="mb-[1px] text-white_A700 w-[auto]"
                   variant="body1"
                 >
-                  KB
+                  {fetchInitals(count?.payload?.name)}
                 </Text>
                 <div class="dropdown-content">
                   <a href="#"
+                    onClick={() => {
+                      logout()
+                    }}
                   >
                     Logout
                   </a>
@@ -104,6 +142,12 @@ const Header = () => {
           </Row>
         </Row>
       </header>
+      {Adminnotificationspopup ? (
+        <Adminnotificationspopup
+          isOpen={isOpenAdminnotificationspopup}
+          onRequestClose={handleCloseAdminnotificationspopupModal}
+        />
+      ) : null}
     </>
   );
 };

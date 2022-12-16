@@ -1,11 +1,44 @@
 import React from "react";
 
-import { Column, Text, Input, Button, Footer } from "components";
+import { Column, Text, Input, Row, Img, Switch, Button, Footer } from "components";
 import Header from "components/Header/Header";
+import { createBoardData } from "service/api";
+import { useNavigate } from "react-router-dom";
+import useForm from "hooks/useForm";
+import * as yup from "yup";
 
 const AdmincreateboardPage = () => {
 
-  
+  const [fetchBoardData, setBoardData] = React.useState();
+  const formValidationSchema = yup
+  .object()
+  .shape({
+    name: yup
+      .string()
+      .required("Name is required")
+  });
+
+  const form = useForm({ name: "" },
+  {
+    validate: true,
+    validateSchema: formValidationSchema,
+    validationOnChange: true,
+  });
+  const navigate = useNavigate();
+
+  function createBoard(data) {
+    const req = { data: { ...data, is_public: "true" } };
+
+    createBoardData(req)
+      .then((res) => {
+        setBoardData(res);
+
+        navigate("/adminfeedback");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 
   return (
     <>
@@ -34,6 +67,10 @@ const AdmincreateboardPage = () => {
               className="w-[100%]"
               wrapClassName="flex h-[56px] w-[100%]"
               name="group293"
+              onChange={(e) => {
+                form.handleChange("name", e.target.value);
+              }}
+              errors={form?.errors?.name}
               placeholder="Enter name"
               shape="RoundedBorder6"
               variant="OutlineBluegray101"
@@ -52,6 +89,9 @@ const AdmincreateboardPage = () => {
               shape="RoundedBorder6"
               size="lg"
               variant="FillIndigoA201"
+              onClick={() => {
+                form.handleSubmit(createBoard);
+              }}
 
             >
               CREATE
