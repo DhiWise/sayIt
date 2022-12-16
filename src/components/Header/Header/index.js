@@ -1,12 +1,25 @@
 import React from "react";
 
 import { Row, Img, Button, Text, Column } from "components";
+import { selectCount } from 'reducers/userSlice';
+import { useSelector } from 'react-redux';
+import { fetchInitals } from "util";
 import ReactTooltip from 'react-tooltip';
 import { Link } from "react-router-dom";
 
+import Adminnotificationspopup from "modals/Adminnotificationspopup";
 
 const Header = () => {
+  const count = useSelector(selectCount);
 
+  const [isOpenAdminnotificationspopup, setAdminnotificationspopup] =
+    React.useState(false);
+  function handleOpenAdminnotificationspopupModal() {
+    setAdminnotificationspopup(true);
+  }
+  function handleCloseAdminnotificationspopupModal() {
+    setAdminnotificationspopup(false);
+  }
   return (
     <>
       <header className="w-[100%]">
@@ -47,7 +60,7 @@ const Header = () => {
                 size="mdIcn"
                 variant="icbFillWhiteA70033"
               >
-
+                
                   <Img
                     src="images/img_eye.svg"
                     className="h-[24px] sm:h-[10px] md:h-[13px] flex items-center justify-center"
@@ -74,11 +87,19 @@ const Header = () => {
                 className="flex items-center justify-center md:ml-[12px] ml-[10px] sm:ml-[9px] rounded-radius50 SayItLogo"
                 size="mdIcn"
                 variant="icbFillWhiteA70033"
+
+                onClick={handleOpenAdminnotificationspopupModal}
+                isOpen={isOpenAdminnotificationspopup}
+                onRequestClose={handleCloseAdminnotificationspopupModal}
               >
                 <Img
                   src="images/img_bell.svg"
                   className="h-[24px] sm:h-[10px] md:h-[13px] flex items-center justify-center"
                   alt="Bell"
+
+                  onClick={handleOpenAdminnotificationspopupModal}
+                  isOpen={isOpenAdminnotificationspopup}
+                  onRequestClose={handleCloseAdminnotificationspopupModal}
                 />
               </Button>
 
@@ -87,15 +108,12 @@ const Header = () => {
                   className="mb-[1px] text-white_A700 w-[auto]"
                   variant="body1"
                 >
-                  KB
+                  {fetchInitals(count?.payload?.name)}
                 </Text>
                 <div class="dropdown-content">
-                  <a href="#"
-                  >
+                  <a href="#">
                     Logout
                   </a>
-                  {/* <a href="#">Link 2</a>
-                    <a href="#">Link 3</a> */}
                 </div>
               </Column>
 
@@ -104,6 +122,12 @@ const Header = () => {
           </Row>
         </Row>
       </header>
+      {Adminnotificationspopup ? (
+        <Adminnotificationspopup
+          isOpen={isOpenAdminnotificationspopup}
+          onRequestClose={handleCloseAdminnotificationspopupModal}
+        />
+      ) : null}
     </>
   );
 };
