@@ -17,6 +17,7 @@ import { Switch } from "./Switch";
 import { FloatingInput } from "./FloatingInput";
 import { TextArea } from "./TextArea";
 import { Footer } from "./Footer";
+import { SelectBox } from "./SelectBox/SelectBox";
 export {
   Column,
   Datepicker,
@@ -36,5 +37,6 @@ export {
   Switch,
   FloatingInput,
   TextArea,
-  Footer
+  Footer,
+  SelectBox
 };
