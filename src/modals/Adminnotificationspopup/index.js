@@ -80,7 +80,6 @@ const AdminnotificationspopupModal = (props) => {
                 <div className="m-[auto] mt-[20px]  max-h-[97vh] bg-s bg-gray-100">
                     <Column
                         className="justify-end max-w-[390px] sm:mb-[181px] md:mb-[234px] mb-[454px] mx-[auto] sm:px-[15px] sm:py-[15px] py-[16px] md:py-[8px] w-[100%]"
-
                     >
                         <Row className="md:flex-wrap sm:flex-wrap items-center justify-between mt-[11px] sm:mt-[4px] md:mt-[5px] sm:mx-[0] sm:px-[0] sm:w-[100%] w-[88%]">
                             <Text
