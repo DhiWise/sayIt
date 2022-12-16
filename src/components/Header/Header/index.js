@@ -1,16 +1,19 @@
 import React from "react";
 
 import { Row, Img, Button, Text, Column } from "components";
-import { selectCount } from 'reducers/userSlice';
-import { useSelector } from 'react-redux';
+import { increment, selectCount } from 'reducers/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchInitals } from "util";
 import ReactTooltip from 'react-tooltip';
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Adminnotificationspopup from "modals/Adminnotificationspopup";
 
 const Header = () => {
   const count = useSelector(selectCount);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [isOpenAdminnotificationspopup, setAdminnotificationspopup] =
     React.useState(false);
@@ -19,6 +22,15 @@ const Header = () => {
   }
   function handleCloseAdminnotificationspopupModal() {
     setAdminnotificationspopup(false);
+  }
+
+
+  function logout() {
+    let value = {};
+    dispatch(increment(value));
+    localStorage.removeItem('LOGIN');
+    navigate('/usercreatepost');
+
   }
   return (
     <>
@@ -60,12 +72,14 @@ const Header = () => {
                 size="mdIcn"
                 variant="icbFillWhiteA70033"
               >
-                
+                <Link to="/userroadmapone">
+
                   <Img
                     src="images/img_eye.svg"
                     className="h-[24px] sm:h-[10px] md:h-[13px] flex items-center justify-center"
                     alt="eye"
                   />
+                </Link>
               </Button>
 
               <Button
@@ -111,7 +125,11 @@ const Header = () => {
                   {fetchInitals(count?.payload?.name)}
                 </Text>
                 <div class="dropdown-content">
-                  <a href="#">
+                  <a href="#"
+                    onClick={() => {
+                      logout()
+                    }}
+                  >
                     Logout
                   </a>
                 </div>

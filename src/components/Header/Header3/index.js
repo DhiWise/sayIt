@@ -1,5 +1,4 @@
 import React from "react";
-import UserroadmapOnePage from "../../../pages/UserroadmapOne/index";
 import ReactTooltip from 'react-tooltip';
 import { fetchInitals } from "util";
 import { UserType } from "constants/Constant";
@@ -11,16 +10,10 @@ import {
   Img,
   Text,
   Line,
-  Input,
   SelectBox,
 } from "components";
 import {
   getBoardsselectname,
-  getPostsboardideq1,
-  postPostlistwithcustomsorting,
-  getUpvotespostideq1,
-  deleteUpvotespostideq1,
-  upvotePosts,
 } from "service/api";
 import { Link } from "react-router-dom";
 
@@ -34,8 +27,6 @@ const _ = require("underscore");
 const Header3 = (props) => {
   const count = useSelector(selectCount);
   const dispatch = useDispatch();
-  const [inputvalue, setInputvalue] = React.useState({ title: " " });
-  const [apiData, setapiData] = React.useState();
   const [selectBoxData, setselectBoxData] = React.useState();
   const [isOpenUsernotificationspopupModal, setUsernotificationspopupModal] =
     React.useState(false);
@@ -169,8 +160,6 @@ const Header3 = (props) => {
                         >
                           Logout
                         </a>
-                        {/* <a href="#">Link 2</a>
-                    <a href="#">Link 3</a> */}
                       </div>
                     </Column>
                     <Link to="/create-post"> <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded hidden sm:block ml-[10px]">

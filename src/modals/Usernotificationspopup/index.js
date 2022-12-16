@@ -16,8 +16,6 @@ import { useSelector } from 'react-redux';
 const _ = require("underscore");
 const UsernotificationspopupModal = (props) => {
   const [apiData, setapiData] = React.useState([]);
-  const [offset, setOffset] = React.useState(10);
-  const [hasMore, sethasMore] = React.useState(true);
   const [PostDetails, setPostDetails] = React.useState(true);
   const navigate = useNavigate();
   const count = useSelector(selectCount);
