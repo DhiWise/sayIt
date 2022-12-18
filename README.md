@@ -343,7 +343,7 @@ npm i
 
 ### Step 4: Create a `.env`  file
 
-Create a `.env` file in the project folder and replace the **<PROJECT_API_KEY>** with `anon` `public` and **<SUPABASE_PROJECT_URL>** with `URL`. Also, replace **<PROJECT_SERVICE_ROLE_KEY>**with `service_role` `secret` we got from Step 1 🔗. 
+Create a `.env` file in the project folder and replace the **<PROJECT_API_KEY>** with `anon` `public` and **<SUPABASE_PROJECT_URL>** with `URL`. Also, replace **<PROJECT_SERVICE_ROLE_KEY>** with `service_role` `secret` we got from <a href="https://github.com/DhiWise/sayIt#step-1-get-url-and-api-key">Step 1</a> 🔗. 
 And add replace the **<BUCKET_NAME>**, which we got from <a href="#step-3-create-a-storage-bucket">Step3</a> 🔗. 
 
 ```js
