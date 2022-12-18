@@ -4,6 +4,11 @@
 
 SayIt helps you gather feature requests and feedback, organizes them based on their priority, and helps you plan your roadmap. Also, it engages everyone with the new updates when a requested feature is updated.
 
+**Authentication Overview**
+
+<img src="./public/images/invite.gif" alt="drawing" style="width:700px;"/>
+
+
 **Admin panel overview**
 
 <img src="./public/images/admin.gif" alt="drawing" style="width:700px;"/>
