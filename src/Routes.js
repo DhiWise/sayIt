@@ -10,7 +10,7 @@ import Adminusers from "pages/Adminusers";
 import Admincreateboard from "pages/Admincreateboard";
 import Invite from "pages/Invite";
 import Adminfeedback from "pages/Adminfeedback";
-import Signup from "pages/SignUp";
+import Signup from "pages/ResetPassword";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "pages/Home";
 import NotFound from "pages/NotFound";

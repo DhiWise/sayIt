@@ -40,7 +40,6 @@ const AdminnotificationspopupModal = (props) => {
                 res.forEach((d) => {
                     if (d.activity === "NEW_POSTS") {
                         d.activity = "created a post in"
-                        d.users = d?.profiles?.name
                     }
 
                     if (d.activity === "NEW_COMMENTS") {

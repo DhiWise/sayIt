@@ -4,13 +4,63 @@ import {
   Column,
   Row,
   Text,
+  Img,
   Input,
   Button,
   Footer,
 } from "components";
+import useForm from "hooks/useForm";
+import * as yup from "yup";
+import _ from "lodash";
+import { inviteUsers } from "service/api";
+import { useNavigate } from "react-router-dom";
 
 const Invite = () => {
- 
+  function handleNavigate() {}
+
+  const [userData, setUserData] = React.useState("");
+  const[messageData,setMessageData]= React.useState(false);
+  const navigate= useNavigate();
+
+  const formValidationSchema = yup
+  .object()
+  .shape({
+    email: yup
+      .string()
+      .required("email is required")
+      .email("Please enter valid email"),
+    data: yup.object().shape({ name: yup.string() }),
+  });
+
+  const form = useForm(
+    {email: ""},
+    {
+      validate: true,
+      validateSchema: formValidationSchema,
+      validationOnChange: true,
+    }
+
+  );
+  function inviteUser(data) {
+    const req = { data: { ...data } };
+    inviteUsers(req)
+      .then((res) => {
+        setUserData(res);
+        setMessageData(true);
+        localStorage.setItem('INVITE',true);
+
+      })
+      .catch((err) => {
+        if(err?.response?.data?.error_description){
+          alert(err?.response?.data?.error_description);
+        }else{
+          alert(err?.response?.data?.msg);
+        }
+      });
+  }
+  function handleNavigate(){
+    navigate("/login");
+  }
   return (
     <>
       <Column className="bg-gray_100 font-inter items-center justify-start mx-[auto]
@@ -24,6 +74,7 @@ const Invite = () => {
             <Button
               className="font-bold min-w-[7%] text-[14px] text-bluegray_400 text-center w-[max-content]"
               shape="RoundedBorder6"
+              onClick={handleNavigate}
               size="lg"
             >
               LOG IN
@@ -61,6 +112,10 @@ const Invite = () => {
                 placeholder="Email"
                 shape="RoundedBorder6"
                 size="xl"
+                errors={form?.errors?.email}
+                onChange={(e) => {
+                  form.handleChange("email", e.target.value);
+                }}
 
               ></Input>
                 
@@ -70,12 +125,19 @@ const Invite = () => {
                 shape="RoundedBorder6"
                 size="xl"
                 variant="FillLightgreenA700"
+                onClick={() => {
+                  form.handleSubmit(inviteUser);
+                }}
               >
                 SEND
               </Button>
               <Row>
             
               </Row>
+              {messageData && 
+              <div>
+               check your mailbox
+              </div>}
             </Column>
           </Row>
         </Column>

@@ -1,8 +1,76 @@
 import React from "react";
 
-import { Column, Row, Button, Text, Input, Footer } from "components";
+import { Column, Row, Img, Button, Text, Input, Footer } from "components";
+import { editPasswordData } from "service/api";
+import useForm from "hooks/useForm";
+import * as yup from "yup";
+import _ from "lodash";
+import { useNavigate } from "react-router-dom";
+
+let href;
 const Signup = () => {
-  
+  React.useEffect(()=>{
+    let href2= window.location.hash.substring(
+      window.location.hash.lastIndexOf('#access_token=')+1,
+      window.location.hash.lastIndexOf("&expires_in"));
+       href=href2.replace('access_token=','');
+    },[])
+
+  const navigate= useNavigate();
+  const [passwordData, setPasswordData] = React.useState();
+  const [profileData, setProfileData] = React.useState();
+  const formValidationSchema = yup.object().shape({
+    password: yup
+      .string()
+      .required("Password is required")
+      .min(8, "Password must be minimum of length 8")
+      .max(20, "Password must be maximum of length 20")
+      .matches(
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-._]).{8,}$/,
+        "Password is not in correct format"
+      ),
+        email: yup
+          .string()
+          .required("Email is required")
+          .email("Please enter valid email"),
+       name:yup.string()
+              .required("Name is required")   
+  });
+  const form = useForm(
+    {name:"", email: "", password: "" },
+    {
+      validate: true,
+      validateSchema: formValidationSchema,
+      validationOnChange: true,
+    }
+  );
+
+  function editPassword(data) {
+    const req = { data: { ...data } };
+    _.set(req.data, "data.name", data.name);
+    if(profileData){
+      _.set(req.data,"data.avtar",profileData.Key)
+    }
+    editPasswordData(req,href)
+      .then((res) => {
+        setPasswordData(res);
+
+        localStorage.setItem("AUTH_USER_ID", JSON.stringify(res?.id));
+        navigate("/login")
+      })
+      .catch((err) => {
+       if(err?.response?.data?.error_description){
+        alert(err?.response?.data?.error_description);
+       }else{
+        alert(err?.response?.data?.msg);
+       }
+      });
+  }
+  function handleNavigate(){
+    navigate("/login");
+  }
+
+
   return (
     <>
       <Column className="bg-gray_100 font-inter items-center justify-start mx-[auto]
@@ -16,6 +84,7 @@ const Signup = () => {
             <Button
               className="font-bold min-w-[7%] text-[14px] text-bluegray_400 text-center w-[max-content]"
               shape="RoundedBorder6"
+              onClick={handleNavigate}
               size="lg"
             >
               LOG IN
@@ -49,6 +118,10 @@ const Signup = () => {
                 placeholder="Name"
                 shape="RoundedBorder6"
                 size="xl"
+                errors={form?.errors?.name}
+                onChange={(e) => {
+                  form.handleChange("name", e.target.value);
+                }}
 
               ></Input>
               
@@ -62,6 +135,10 @@ const Signup = () => {
                 placeholder="Email"
                 shape="RoundedBorder6"
                 size="xl"
+                errors={form?.errors?.email}
+                onChange={(e) => {
+                  form.handleChange("email", e.target.value);
+                }}
 
               ></Input>
                 <Input
@@ -72,6 +149,10 @@ const Signup = () => {
                 placeholder="Password"
                 shape="RoundedBorder6"
                 size="xl"
+                errors={form?.errors?.password}
+                onChange={(e) => {
+                  form.handleChange("password", e.target.value);
+                }}
 
               ></Input>
               
@@ -81,6 +162,10 @@ const Signup = () => {
                 md:mt-[16px] mt-[32px] text-[14px] text-center w-[max-content] ml-[70px]"
                 shape="RoundedBorder6"
                 size="xl"
+                variant="FillLightgreenA700"
+                onClick={() => {
+                  form.handleSubmit(editPassword);
+                }}
 
               >
                 SIGN UP

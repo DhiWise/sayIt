@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 import Adminnotificationspopup from "modals/Adminnotificationspopup";
 
-const Header = () => {
+const Header = (props) => {
   const count = useSelector(selectCount);
   const dispatch = useDispatch();
   const navigate = useNavigate();
