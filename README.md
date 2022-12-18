@@ -203,25 +203,25 @@ This will create a function. You can view this function from `Project dashboard 
 
 This function is used to fetch posts of users along with user activity filters (posts, votes, comments). Here we need to pass user ID and activity filters as requested, and according to the request, it will return a filtered post list. 
 
-Get the function query from [here](https://github.com/DhiWise/SayIt/blob/main/queries-and-functions.md#1%EF%B8%8F%E2%83%A3post-list-with-filters).
+Get the function query from [here](https://github.com/DhiWise/sayIt/blob/main/queries-and-functions.md#1%EF%B8%8F%E2%83%A3-post-list-with-filters).
 
 ### 2️⃣ User list with sorting:
 
 This function is used to sort users according to the activity (LAST_ACTIVITY, TOP_POSTERS, TOP_VOTERS). Here we need to pass the sorting activity, which will return the sorted user list.
 
-Get the function query from [here](https://github.com/DhiWise/SayIt/blob/main/queries-and-functions.md#2%EF%B8%8F%E2%83%A3user-list-with-sorting).
+Get the function query from [here](https://github.com/DhiWise/sayIt/blob/main/queries-and-functions.md#2%EF%B8%8F%E2%83%A3-user-list-with-sorting).
 
 ### 3️⃣ Post list:
 
 This function filters posts of the logged-in users along with board and status filters(TRENDING, TOP, NEW). Here we need to pass user_id, board_id, and status as request, which will return a filtered post list.
 
-Get the function query from [here](https://github.com/DhiWise/SayIt/blob/main/queries-and-functions.md#3%EF%B8%8F%E2%83%A3post-list).
+Get the function query from [here](https://github.com/DhiWise/sayIt/blob/main/queries-and-functions.md#3%EF%B8%8F%E2%83%A3-post-list).
 
 ### 4️⃣ Get board list with post counts
 
 This function returns the board list with the count of posts on the board.
 
-Get the function query from [here](https://github.com/DhiWise/SayIt/blob/main/queries-and-functions.md#4%EF%B8%8F%E2%83%A3get-board-list-with-post-counts).
+Get the function query from [here](https://github.com/DhiWise/sayIt/blob/main/queries-and-functions.md#4%EF%B8%8F%E2%83%A3-get-board-list-with-post-counts).
 
 ### Triggers:
 
@@ -229,7 +229,7 @@ Get the function query from [here](https://github.com/DhiWise/SayIt/blob/main/qu
 
 This function Inserts a record to the `notifications` table when a new upvote is created in `upvotes` table.
 
-Get the function query from [here](https://github.com/DhiWise/SayIt/blob/main/queries-and-functions.md#5%EF%B8%8F%E2%83%A3insert-into-notification-table-on-new-upvotes).
+Get the function query from [here](https://github.com/DhiWise/sayIt/blob/main/queries-and-functions.md#5%EF%B8%8F%E2%83%A3-insert-into-notification-table-on-new-upvotes).
 
 After the function is created, run the following query in `Project dashboard -> SQL Editor -> + New query` to create a Trigger from the function.
 
@@ -243,7 +243,7 @@ create trigger on_new_upvote
 
 This function inserts record to the `notifications` table when a new comment is posted in `comments` table.
 
-Get the function query from [here](https://github.com/DhiWise/SayIt/blob/main/queries-and-functions.md#6%EF%B8%8F%E2%83%A3insert-into-notification-table-on-new-comments).
+Get the function query from [here](https://github.com/DhiWise/sayIt/blob/main/queries-and-functions.md#6%EF%B8%8F%E2%83%A3-insert-into-notification-table-on-new-comments).
 
 After the function is created, run the following query in `Project dashboard -> SQL Editor -> + New query` to create a Trigger from the function.
 
@@ -257,7 +257,7 @@ create trigger on_new_comment
 
 This function inserts a record to the `notifications` table when a new post is created in `posts` table.
 
-Get the function query from [here](https://github.com/DhiWise/SayIt/blob/main/queries-and-functions.md#7%EF%B8%8F%E2%83%A3insert-into-notification-table-on-new-posts).
+Get the function query from [here](https://github.com/DhiWise/sayIt/blob/main/queries-and-functions.md#7%EF%B8%8F%E2%83%A3-insert-into-notification-table-on-new-posts).
 
 After the function is created, run the following query in `Project dashboard -> SQL Editor -> + New query` to create a Trigger from the function.
 
@@ -271,7 +271,7 @@ create trigger on_new_post
 
 This function inserts a record to the `notifications` table when the status of a post is changed, or ownership is assigned to a post from `posts` table.
 
-Get the function query from [here](https://github.com/DhiWise/SayIt/blob/main/queries-and-functions.md#8%EF%B8%8F%E2%83%A3insert-into-notification-table-on-status-updates).
+Get the function query from [here](https://github.com/DhiWise/sayIt/blob/main/queries-and-functions.md#8%EF%B8%8F%E2%83%A3-insert-into-notification-table-on-status-updates).
 
 After the function is created, run the following query in `Project dashboard -> SQL Editor -> + New query` to create a Trigger from the function.
 
@@ -285,7 +285,7 @@ create trigger on_status_updates
 
 This function inserts record on the `upvotes` table when the user creates a new post.
 
-Get the function query from [here](https://github.com/DhiWise/SayIt/blob/main/queries-and-functions.md#9%EF%B8%8F%E2%83%A3insert-in-upvotes-table-on-new-posts).
+Get the function query from [here](https://github.com/DhiWise/sayIt/blob/main/queries-and-functions.md#9%EF%B8%8F%E2%83%A3-insert-in-upvotes-table-on-new-posts).
 
 After the function is created, run the following query in `Project dashboard -> SQL Editor -> + New query` to create a Trigger from the function.
 
