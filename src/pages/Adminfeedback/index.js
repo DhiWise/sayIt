@@ -124,6 +124,7 @@ const AdminfeedbackPage = () => {
       }
       editPostData(req)
         .then((res) => {
+          setCountData();
           countFunction();
         })
         .catch((err) => {
@@ -207,12 +208,13 @@ const AdminfeedbackPage = () => {
         setCommentData(res);
         if (!res.length) {
           setEmptyComment(true);
-          setPostTagData([]);
-          fetchPostTags();
+
         } else {
           setEmptyComment(false);
           fetchCommentImage(commentsId);
         }
+        setPostTagData([]);
+        fetchPostTags();
       })
       .catch((err) => {
         console.error(err);
@@ -447,6 +449,7 @@ const AdminfeedbackPage = () => {
   function closeModal() {
     setModelOpen(false);
     setEditModelOpen(false);
+    setCountData();
     countFunction();
   }
 
@@ -487,6 +490,7 @@ const AdminfeedbackPage = () => {
     let data={}
     if(e?.target?.value){
       data.search=e.target.value;
+      setCountData();
       countFunction(data);
     }
   }

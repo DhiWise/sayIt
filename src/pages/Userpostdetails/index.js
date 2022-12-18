@@ -485,31 +485,6 @@ const UserpostdetailsPage = () => {
                   </Column>
                 </Column>
 
-                <Column className="items-center justify-start w-[100%] ml-[10px] md:ml-[33px] sm:mt-[14px] md:mt-[18px] mt-[36px]">
-                  <Row
-                    className="border-gray_101 border border-solid sm:p-[15px] p-[16px] md:p-[8px] 
-                     listpolygontwo mt-[50px]"
-                  >
-                    {!visiblePostCommentForm && (
-                      <Text
-                        className="font-medium sm:ml-[3px] md:ml-[4px] ml-[8px] text-gray_402 w-[auto]"
-                        onClick={() => {
-                          addComments();
-                        }}
-                      >
-                        Leave an Internal comment
-                      </Text>
-                    )}
-                    {visiblePostCommentForm && (
-                      <UserComments
-                        setVisiblePostComment={
-                          setVisiblePostComment
-                        }
-                      />
-                    )}
-                  </Row>
-                </Column>
-
                 <Column className="justify-start  sm:mt-[12px] md:mt-[16px] mt-[32px] sm:mx-[0] sm:px-[0] ml-[20px]">
                   {commentData?.length ?
                     <Row className=" listrequest mt-[10px] mb-[10px]">
@@ -655,6 +630,31 @@ const UserpostdetailsPage = () => {
                       );
                     })}
                   </List>
+                </Column>
+
+                <Column className="items-center justify-start w-[100%] ml-[10px] md:ml-[33px] sm:mt-[14px] md:mt-[18px] mt-[36px]">
+                  <Row
+                    className="border-gray_101 border border-solid sm:p-[15px] p-[16px] md:p-[8px] 
+                     listpolygontwo mt-[50px]"
+                  >
+                    {!visiblePostCommentForm && (
+                      <Text
+                        className="font-medium sm:ml-[3px] md:ml-[4px] ml-[8px] text-gray_402 w-[auto]"
+                        onClick={() => {
+                          addComments();
+                        }}
+                      >
+                        Leave an Internal comment
+                      </Text>
+                    )}
+                    {visiblePostCommentForm && (
+                      <UserComments
+                        setVisiblePostComment={
+                          setVisiblePostComment
+                        }
+                      />
+                    )}
+                  </Row>
                 </Column>
               </Column>
             </Column>
