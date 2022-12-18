@@ -352,7 +352,7 @@ Create a `.env` file in the project folder and replace the **<PROJECT_API_KEY>**
 And add replace the **<BUCKET_NAME>**, which we got from <a href="#step-3-create-a-storage-bucket">Step3</a> 🔗. 
 
 ```js
-REACT_APP_COMMEN_URL = <SUPABASE_PROJECT_URL>
+REACT_APP_COMMEN_URL = <SUPABASE_PROJECT_URL>/
 REACT_APP_APIKEY = <PROJECT_API_KEY>
 REACT_APP_AUTHORIZATION = <PROJECT_API_KEY>
 REACT_APP_FILE_URL= <SUPABASE_PROJECT_URL>/storage/v1/object/<BUCKET_NAME>/profile/
