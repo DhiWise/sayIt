@@ -110,7 +110,7 @@ Add the following query for `Invite user` email:
 <h2>Invitation to SayIt Board</h2>
 
 <p>You have been invited to join SayIt team. You can use it to raise feature requests, give feedback and get help.</p>
-<p> Click <a href="{{ .ConfirmationURL }}singup">here</a> to accept the invite </p>
+<p> Click <a href="{{ .ConfirmationURL }}signup">here</a> to accept the invite </p>
 
 <p>Hope you will find SayIt useful!</p>
 
