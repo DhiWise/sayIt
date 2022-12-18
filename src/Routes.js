@@ -2,64 +2,66 @@ import React from "react";
 import Usernotifications from "pages/Usernotifications";
 import Adminnotifications from "pages/Adminnotifications";
 import Login from "pages/Login";
+import { ProtectedRoute, ProtectedRouteLogin } from "components";
 import Userpostdetails from "pages/Userpostdetails";
 import Admindashboard from "pages/Admindashboard";
-import UserroadmapOne from "pages/UserroadmapOne";
 import Usercreatepost from "pages/Usercreatepost";
 import Adminusers from "pages/Adminusers";
 import Admincreateboard from "pages/Admincreateboard";
 import Invite from "pages/Invite";
 import Adminfeedback from "pages/Adminfeedback";
+import CreatePost from "pages/CreatePost";
 import Signup from "pages/ResetPassword";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "pages/Home";
 import NotFound from "pages/NotFound";
 import Register from "pages/Register";
-import CreatePost from "pages/CreatePost";
-
+import UserroadmapOnePage from "pages/UserroadmapOne";
 
 const ProjectRoutes = () => {
   return (
     <Router>
       <Routes>
-
+        
         <Route path="*" element={<NotFound />} />
-        <Route
+        <Route exact
           path="/adminfeedback"
-          element={<Adminfeedback />}
+          element={<ProtectedRoute element={Adminfeedback} />}
         />
 
-        <Route
+        <Route exact
           path="/adminnotifications"
-          element={<Adminnotifications />}
+          element={<ProtectedRoute element={Adminnotifications} />}
         />
 
-        <Route
+        <Route exact
           path="/adminusers"
-          element={<Adminusers />}
+          element={<ProtectedRoute element={Adminusers} />}
         />
+              
 
-        <Route path="/" element={<UserroadmapOne />} />
-        <Route path="/userroadmapone" element={<UserroadmapOne />} />
-        <Route
+        <Route exact
           path="/admincreateboard"
-          element={<Admincreateboard />}
+          element={<ProtectedRoute element={Admincreateboard} />}
         />
+        <Route path="/" element={<UserroadmapOnePage/>}/>
         <Route exact
           path="/usercreatepost"
-          element={<Usercreatepost />}
+          element={<Usercreatepost/>}
         />
-        <Route
-          path="/signup" element={<Signup />}
+        <Route exact
+          path="/signup" element={<Signup/>}
         />
+       <Route path="/userroadmapone" element={<UserroadmapOnePage/>}/>
         <Route path="/Invite" element={<Invite />} />
         <Route path="/admindashboard" element={<Admindashboard />} />
         <Route path="/userpostdetails" element={<Userpostdetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/usernotifications" element={<Usernotifications />} />
         <Route path="/dhiwise-dashboard" element={<Home />} />
-        <Route path="/register" element={<Register />} />
         <Route path="/create-post" element={<CreatePost/>} />
+        <Route path="/register" element={<Register/>} />
+
       </Routes>
     </Router>
   );

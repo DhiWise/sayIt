@@ -18,6 +18,7 @@ import { FloatingInput } from "./FloatingInput";
 import { TextArea } from "./TextArea";
 import { Footer } from "./Footer";
 import { SelectBox } from "./SelectBox/SelectBox";
+import { ProtectedRoute } from "./ProtectedRoute";
 export {
   Column,
   Datepicker,
@@ -38,5 +39,6 @@ export {
   FloatingInput,
   TextArea,
   Footer,
-  SelectBox
+  SelectBox,
+  ProtectedRoute
 };
